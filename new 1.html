@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>
+cgcalculator
+</title>
+<style>
+body{
+background-color:pink;
+}
+#input,#result{
+width:290px;
+height:60px;
+font-size:180%;
+border:none;
+text-align:right;
+margin:3px:
+
+}
+input[type=button]
+{
+height:60px;
+width:50px;
+margin:3px;
+border-radius:1px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+<h1 align="center">javascript calculator</h1>
+<center>
+<div style= "margin:10px;padding:50px;width:300px;">
+<form name="calculator">
+<audio id="play" src="http://www.soundjay.com/button/beep-07.wav"></audio>
+<input type="text" placeholder="0" id="input" ><br>
+<input type="text" placeholder="0" id="result" readonly><br>
+<input type="button" value="!"  onclick="factorial()" onmousedown="playSound()" >
+<input type="button" value="^2" onclick="getoperator('^2')" onmousedown="playSound()">
+<input type="button" value="&#8730" onclick="getoperator('!')"onmousedown="playSound()">
+<input type="button" value="&#960" name="bpi" onclick="getNumber(3.1416)" onmousedown="playSound()">
+<input type="button" value="C" onclick="clearscreen()" onmousedown="playSound()"><br>
+<input type="button" value="sin" onclick="getoperator('sin')" onmousedown="playSound()">
+<input type="button" value="(" onclick="calculator.input.value+='('" onmousedown="playSound()">
+<input type="button" value=")" onclick="calculator.input.value+=')'" onmousedown="playSound()">
+<input type="button" value="ANS" name="be" onclick="answer()" onmousedown="playSound()">
+<input type="button" value="[X]" onclick="backspace()"onmousedown="playSound()" style="color:red;"><br>
+<input type="button" value="cos" onclick="getoperator('cos')" onmousedown="playSound()">
+<input type="button" value="7" name="b7" onclick="getNumber(b7.value)" onmousedown="playSound()">
+<input type="button" value="8" name="b8"onclick="getNumber(b8.value)" onmousedown="playSound()">
+<input type="button" value="9"name="b9" onclick="getNumber(b9.value)" onmousedown="playSound()">
+<input type="button" value="&#247" onclick="getoperator('/')" onmousedown="playSound()"><br>
+<input type="button" value="tan" onclick="getoperator('tan')" onmousedown="playSound()">
+<input type="button" value="4"name="b4"onclick="getNumber(b4.value)" onmousedown="playSound()">
+<input type="button" value="5"name="b5"onclick="getNumber(b5.value)" onmousedown="playSound()">
+<input type="button" value="6"name="b6"onclick="getNumber(b6.value)" onmousedown="playSound()">
+<input type="button" value="X" onclick="getoperator('*')" onmousedown="playSound()"><br>
+<input type="button" value="ln" onclick="getoperator('ln')" onmousedown="playSound()">
+<input type="button" value="1" name="b1"onclick="getNumber(b1.value)" onmousedown="playSound()">
+<input type="button" value="2" name="b2"onclick="getNumber(b2.value)" onmousedown="playSound()">
+<input type="button" value="3" name="b3"onclick="getNumber(b3.value)" onmousedown="playSound()">
+<input type="button" value="-" onclick="getoperator('-')" onmousedown="playSound()"><br>
+<input type="button" value="log" onclick="getoperator('log')" onmousedown="playSound()">
+<input type="button" value="." onclick="getoperator('.')" onmousedown="playSound()">
+<input type="button" value="0" name="b0" onclick="getNumber(b0.value)" onmousedown="playSound()">
+<input type="button" value="=" onclick="compute()" id="sub" onmousedown="playSound()">
+<input type="button" value="+" onclick="getoperator('+')" onmousedown="playSound()"><br>
+</form></div>
+<p><b><span>note:</span></b>for operations like sin,cos,tan,factorial,power,log first enter the expression and then evaluate by clicking the button</p>
+<script>
+function playSound () {
+    document.getElementById('play').play();
+}
+//function called in id input
+/*function keyinput(e)
+{
+e=e||window.event;
+if (e.value==13)
+{document.getElementById("sub").click();
+return false;}
+else if(e.value==48)
+document.input.value+='e';
+
+else if(e.value==49)
+document.input.value+='e';
+else if(e.value==50)
+document.input.value+='e';
+else if(e.value==51)
+document.input.value+='e';
+else if(e.value==52)
+document.input.value+='e';
+else if(e.value==57)
+document.input.value+='e';
+else if(e.value==56)
+document.input.value+='e';
+else if(e.value==55)
+document.input.value+='e';
+else if(e.value==54)
+document.input.value+='e';
+else if(e.value==53)
+document.input.value+='e';
+else 
+return true;
+}*/
+function getNumber(num)
+{
+calculator.input.value += num;
+}
+function clearscreen()
+{
+document.getElementById("input").value="";
+document.getElementById("result").value="";
+
+}
+function backspace()
+{
+var input_var=document.getElementById("input");
+var x= input_var.value;
+if(x.length>0)
+{
+x=x.substring(0,x.length-1);
+input_var.value=x;
+}
+}
+function getoperator(Operand)
+{
+var input_var=document.getElementById("input");
+
+switch (Operand)
+{
+case '+':
+input_var.value += '+';
+break;
+case '-':
+input_var.value += '-';
+break;
+case '/':
+input_var.value += '/';
+break;
+case '*':
+input_var.value += '*';
+break;
+case '!':
+calculator.input.value=Math.sqrt(+eval(calculator.input.value));
+break;
+case '^2':
+calculator.input.value=Math.pow(+eval(calculator.input.value),2);
+break;
+case 'sin':
+calculator.input.value = Math.sin(+eval(calculator.input.value));
+break;
+case 'cos':
+calculator.input.value = Math.cos(+eval(calculator.input.value));
+break;
+case 'tan':
+calculator.input.value = Math.tan(+eval(calculator.input.value));
+break;
+case '.':
+input_var.value += '.';
+break;
+case 'ln':
+calculator.input.value = Math.log(+eval(calculator.input.value));
+break;
+case 'log':
+calculator.input.value = Math.log10(+eval(calculator.input.value));
+break;
+case '%':
+input_var.value += '%';
+break;
+}
+}
+function answer()
+{
+ var x = document.getElementById("result") ;
+    var y = document.getElementById("input") ;
+	ans=x.value;
+    y.value += ans;
+}
+
+function compute()
+{
+
+var input_var=document.getElementById("input");
+ans=eval(input_var.value);
+if(isNaN(ans)||ans=="Infinity")
+{
+alert("syntax error");
+}
+else
+document.getElementById("result").value= ans; 
+}
+function factorial()
+{
+var i;
+fact=1;
+num=eval(calculator.input.value);
+for(i=1; i<=num; i++)  
+{
+fact= fact*i;
+}  
+calculator.input.value=fact;
+}
+</script>
+</body>
+</html>
